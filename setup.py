@@ -11,7 +11,7 @@ setup(
     url='http://github.com/svetlyak40wt/thebot-pomodoro/',
     classifiers=[
         'Development Status :: 4 - Beta',
-        'Environment :: Server',
+        'Environment :: Plugins',
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
         'License :: OSI Approved :: BSD License',
