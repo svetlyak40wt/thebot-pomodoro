@@ -15,4 +15,4 @@ plugin `pomodoro`, like that:
 Authors
 -------
 
-* Alexander Artemenko <svetlyak.40wt@gmail.com>
+* Alexander Artemenko &lt;svetlyak.40wt@gmail.com>
