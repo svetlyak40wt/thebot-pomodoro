@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+from __future__ import absolute_import, unicode_literals
 
 import thebot
 import times
@@ -26,10 +26,10 @@ class Plugin(thebot.ThreadedPlugin):
 
                 del self.pomodoros[key]
 
-    @thebot.route('pomodoro start')
-    @thebot.route('pomodoro start (?P<minutes>\d+)')
+    @thebot.route('start pomodoro')
+    @thebot.route('start pomodoro (?P<minutes>\d+)')
     def start(self, request, minutes=25):
-        """Starts timer with given interval. Default is 25 minutes."""
+        """Starts a timer with given interval. Default is 25 minutes."""
         user = unicode(request.get_user())
 
         if self.pomodoros.get(user) is not None:
@@ -43,8 +43,9 @@ class Plugin(thebot.ThreadedPlugin):
             )
             request.respond('Pomodoro started')
 
-    @thebot.route('pomodoro stop')
+    @thebot.route('stop pomodoro')
     def stop(self, request):
+        """Stops current timer."""
         user = unicode(request.get_user())
         pomodoro = self.pomodoros.get(user)
 
@@ -61,8 +62,9 @@ class Plugin(thebot.ThreadedPlugin):
 
             del self.pomodoros[user]
 
-    @thebot.route('pomodoro status')
+    @thebot.route('status of pomodoro')
     def status(self, request):
+        """Shows current timer's status."""
         user = unicode(request.get_user())
         pomodoro = self.pomodoros.get(user)
 
@@ -84,6 +86,7 @@ class Plugin(thebot.ThreadedPlugin):
 
     @thebot.route('pomodoro stats')
     def stats(self, request):
+        """Shows daily stats. How many timers were started, etc.."""
         user = unicode(request.get_user())
         now = times.now()
         start_of_the_day = datetime.datetime(now.year, now.month, now.day)
