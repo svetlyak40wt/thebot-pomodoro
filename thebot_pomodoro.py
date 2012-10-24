@@ -1,11 +1,12 @@
 from __future__ import absolute_import, unicode_literals
 
-import thebot
 import times
 import datetime
 
+from thebot import ThreadedPlugin, on_command
 
-class Plugin(thebot.ThreadedPlugin):
+
+class Plugin(ThreadedPlugin):
     def __init__(self, *args, **kwargs):
         super(Plugin, self).__init__(*args, **kwargs)
         self.pomodoros = self.storage.with_prefix('pomodoros:')
@@ -26,8 +27,8 @@ class Plugin(thebot.ThreadedPlugin):
 
                 del self.pomodoros[key]
 
-    @thebot.route('start pomodoro')
-    @thebot.route('start pomodoro (?P<minutes>\d+)')
+    @on_command('start pomodoro')
+    @on_command('start pomodoro (?P<minutes>\d+)')
     def start(self, request, minutes=25):
         """Starts a timer with given interval. Default is 25 minutes."""
         user = unicode(request.get_user())
@@ -43,7 +44,7 @@ class Plugin(thebot.ThreadedPlugin):
             )
             request.respond('Pomodoro started')
 
-    @thebot.route('stop pomodoro')
+    @on_command('stop pomodoro')
     def stop(self, request):
         """Stops current timer."""
         user = unicode(request.get_user())
@@ -62,7 +63,7 @@ class Plugin(thebot.ThreadedPlugin):
 
             del self.pomodoros[user]
 
-    @thebot.route('status of pomodoro')
+    @on_command('status of pomodoro')
     def status(self, request):
         """Shows current timer's status."""
         user = unicode(request.get_user())
@@ -84,7 +85,7 @@ class Plugin(thebot.ThreadedPlugin):
                 else:
                     request.respond('{0} seconds till the end of the current pomodoro.'.format(secs))
 
-    @thebot.route('pomodoro stats')
+    @on_command('pomodoro stats')
     def stats(self, request):
         """Shows daily stats. How many timers were started, etc.."""
         user = unicode(request.get_user())
