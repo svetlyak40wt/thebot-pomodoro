@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='thebot-pomodoro',
-    version='0.1.0',
+    version='0.1.1',
     description='A simple productivity timer.',
     keywords='thebot pomodoro plugin',
     license = 'New BSD License',
