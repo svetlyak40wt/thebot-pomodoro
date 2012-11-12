@@ -19,7 +19,7 @@ setup(
     ],
     py_modules=['thebot_pomodoro'],
     install_requires=[
-        'thebot>=0.2.0',
+        'thebot>=0.3.0',
         'times',
     ],
 )
